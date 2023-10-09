@@ -20,7 +20,7 @@
   export const userNavigation = [
     { name: "Your Profile", href: "/profile" },
     { name: "Sign out", href: "#" },
-  ];
+  ]; 
   
   export const registrationFormControls = [
     {
