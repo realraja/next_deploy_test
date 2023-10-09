@@ -37,10 +37,12 @@ const page = () => {
 
     const handleOnClick = async() =>{
         if(!isAuthUser){
-            toast.success('Login to send message', {
+            toast.error('Login to send message', {
                 position: toast.POSITION.TOP_RIGHT, 
             });
-        router.push('/login');
+            setComponentLevelLoader({ loading: false, id: "" });
+            router.push('/login');
+            return;
         }
         setComponentLevelLoader({ loading: true, id: "" });
         

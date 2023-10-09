@@ -12,7 +12,7 @@
   ];
   
   export const adminNavOptions = [
-    { name: "home", href: "/home", current: true },
+    { name: "home", href: "/", current: true },
     { name: "Manage Work", href: "/works", current: false },
     { name: "Employees", href: "/workers", current: false },
   ];

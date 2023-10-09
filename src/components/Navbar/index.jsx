@@ -226,7 +226,7 @@ export default function index({ children }) {
                       </Disclosure.Button>
                     </div>
                   ) : pathName === "/login" ? (
-                    <div className=" lg:flex lg:flex-1 lg:justify-end md:hidden">
+                    <div className=" lg:flex lg:flex-1 lg:justify-end ">
                       <Link
                         href="/register"
                         className="text-sm font-semibold leading-6 text-violet-500"
@@ -235,7 +235,7 @@ export default function index({ children }) {
                       </Link>
                     </div>
                   ) : (
-                    <div className=" lg:flex lg:flex-1 lg:justify-end md:hidden">
+                    <div className=" lg:flex lg:flex-1 lg:justify-end ">
                       <Link
                         href="/login"
                         className="text-sm font-semibold leading-6 text-violet-500"
@@ -352,6 +352,7 @@ export default function index({ children }) {
         comfirmState={comfirmState}
         setComfirmState={setComfirmState}
         setComfirmData={setComfirmData}
+        buttonText={'LogOut Now'}
       />
     </>
   );

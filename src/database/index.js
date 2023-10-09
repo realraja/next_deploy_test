@@ -11,7 +11,7 @@ const connectDB = async() =>{
             useUnifiedTopology: true,
             dbName: 'HisabApp'
         });
-        console.log("MongoDB Connected",connection)
+        console.log("MongoDB Connected")
     }catch(err){
         console.log('error=>',err)
     }

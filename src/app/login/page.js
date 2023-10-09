@@ -72,8 +72,8 @@ export default function Login() {
   }, [isAuthUser]);
 
   return (
-    <div className="bg-gray-700 h-[90vh] relative">
-      <div className="flex flex-col items-center justify-between md:pt-0 md:pr-10 md:pb-0 md:pl-10 mt-8 mr-auto xl:px-5 lg:flex-row">
+    <div className="bg-gray-700 min-h-[93vh] relative">
+      <div className="flex flex-col items-center justify-between md:pt-0 md:pr-10 md:pb-0 md:pl-10 my-20 md:my-8 mr-auto xl:px-5 lg:flex-row">
         <div className="flex flex-col justify-center items-center w-full px-5 md:pr-10 md:pl-10 lg:flex-row">
           <div className="w-full mr-0 mb-0 ml-0 relative max-w-2xl lg:mt-0 lg:w-5/12">
             <div className="flex flex-col items-center justify-start md:p-10 p-5  bg-gray-800 shadow-2xl rounded-xl relative z-10">

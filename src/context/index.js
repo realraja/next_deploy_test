@@ -41,9 +41,9 @@ export default function GlobalState({ children }) {
         }
 
 
-        if (!isAuthUser && pathName !== "/comment") {
-            router.push("/login");
-          }
+        // if (!isAuthUser && pathName !== "/comment") {
+        //     router.push("/login");
+        //   }
     },[Cookies,isAuthUser])
 
     return(

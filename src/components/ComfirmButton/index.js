@@ -2,7 +2,7 @@ import { Fragment, useRef} from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 
-export default function index({comfirmState,setComfirmState,setComfirmData,}) {
+export default function index({comfirmState,setComfirmState,setComfirmData,buttonText}) {
   // const [open, setOpen] = useState(comfirmState)
 
   const cancelButtonRef = useRef(null)
@@ -59,7 +59,7 @@ export default function index({comfirmState,setComfirmState,setComfirmData,}) {
                     className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
                     onClick={() => {setComfirmState(false); setComfirmData(true);}}
                   >
-                    Deactivate
+                    {buttonText}
                   </button>
                   <button
                     type="button"
