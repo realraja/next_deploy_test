@@ -73,15 +73,10 @@ export default function index({ children }) {
                   <div className="flex items-center">
                     <div
                       onClick={() =>
-                        router.push(`${isAdminView ? "/home" : "/"}`)
+                        router.push(`/`)
                       }
                       className="flex-shrink-0 cursor-pointer"
                     >
-                      {/* <img
-                        className="h-8 w-8"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                        alt="Your Company"
-                      /> */}
                       <span className="self-center text-violet-500 text-2xl font-semibold whitespace-nowrap">
                         Eहिसाब
                       </span>
@@ -129,14 +124,15 @@ export default function index({ children }) {
                   </div>
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center md:ml-6">
-                      {/* <button
+                      <button
                         type="button"
-                        className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                        className={ `relative ${!isAuthUser?'hidden':null} rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800`}
+                        onClick={()=>router.push(`${user?.role === 'admin'?'/view-messages':'/notifications'}`)}
                       >
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">View notifications</span>
                         <BellIcon className="h-6 w-6" aria-hidden="true" />
-                      </button> */}
+                      </button>
 
                       {/* Profile dropdown */}
 
@@ -198,11 +194,6 @@ export default function index({ children }) {
                             </Transition>
                           </Menu>
                         ) : null
-                        // <div className=" lg:flex lg:flex-1 lg:justify-end">
-                        //   <Link href="/login" className="text-sm font-semibold leading-6 text-purple-500">
-                        //     Log in <span aria-hidden="true">&rarr;</span>
-                        //   </Link>
-                        // </div>
                       }
                     </div>
                   </div>
@@ -294,7 +285,8 @@ export default function index({ children }) {
                   <div className="flex items-center px-5">
                     <div className="flex-shrink-0">
                       <img
-                        className="h-10 w-10 rounded-full"
+                        className="h-10 w-10 object-contain
+                         rounded-full"
                         src={user?.img}
                         alt=""
                       />
@@ -307,14 +299,15 @@ export default function index({ children }) {
                         {user?.email}
                       </div>
                     </div>
-                    <button
+                    <Disclosure.Button
                       type="button"
                       className="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      onClick={()=>router.push(`${user?.role === 'admin'?'/view-messages':'/notifications'}`)}
                     >
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">View notifications</span>
                       <BellIcon className="h-6 w-6" aria-hidden="true" />
-                    </button>
+                    </Disclosure.Button>
                   </div>
                   <div className="mt-3 space-y-1 px-2">
                     <Disclosure.Button

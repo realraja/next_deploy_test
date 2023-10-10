@@ -5,13 +5,14 @@ import { TrashIcon, UserMinusIcon , UserPlusIcon } from "@heroicons/react/24/out
 import { useContext, useEffect, useState } from "react"
 import { GlobalContext } from "@/context"
 import { useRouter } from "next/navigation";
-import { UpdateUserStatus, getAllUsers ,DeleteUserStatus} from "@/services/users"
+import { UpdateUserStatus ,DeleteUserStatus} from "@/services/users"
 import { toast } from "react-toastify"
 import { PuffLoader } from "react-spinners"
 import ComfirmButton from '@/components/ComfirmButton'
+import axios from "axios"
   
   export default function Page() {
-    const {componentLevelLoader,setComponentLevelLoader,isAuthUser,user} = useContext(GlobalContext);
+    const {user} = useContext(GlobalContext);
     
     const [loading,setLoading] = useState(true);
     const [usersData,setUsersData] = useState([]);
@@ -27,9 +28,6 @@ import ComfirmButton from '@/components/ComfirmButton'
       const data = await DeleteUserStatus(id);
       // console.log(data);
     if(data.success){
-      toast.success(data.message, {
-        position: toast.POSITION.TOP_RIGHT, 
-      });
       setDeleteId('');
     }else{
       toast.error(data.message, {
@@ -51,9 +49,6 @@ import ComfirmButton from '@/components/ComfirmButton'
       setDeleteId(id);
       const data = await UpdateUserStatus(id);
       if(data.success){
-        toast.success(data.message, {
-          position: toast.POSITION.TOP_RIGHT, 
-        });
         setDeleteId('');
       }else{
         toast.error(data.message, {
@@ -69,7 +64,9 @@ import ComfirmButton from '@/components/ComfirmButton'
 
       const fetchUsers = async() =>{
         
-        const data =  await getAllUsers();       
+        // const data =  await getAllUsers();
+        const {data} =  await axios.get('/api/allusers');
+        console.log(data?.success);       
 
         if (data?.success) {
           setUsersData(data.data);
@@ -129,7 +126,7 @@ import ComfirmButton from '@/components/ComfirmButton'
                     {
                       usersData.map((item,index)=>(
                           item?.email !== user?.email && !item?.hidden ?(<>
-                            <UserTableBody index={index+1} img={item?.photoURL} name={item?.name} village={item?.village} email={item?.email} status={item?.activated} createdAt={item?.createdAt.split('T')[0].split('-')} handleDelete={()=>handleDelete(item?._id)}  handleUpdate={()=>handleUpdate(item?._id) } />
+                            <UserTableBody index={index+1} key={index} img={item?.photoURL} name={item?.name} village={item?.village} email={item?.email} status={item?.activated} createdAt={item?.createdAt.split('T')[0].split('-')} handleDelete={()=>handleDelete(item?._id)}  handleUpdate={()=>handleUpdate(item?._id) } />
                             </> ):null
 
                       ))

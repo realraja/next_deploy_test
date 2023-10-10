@@ -48,6 +48,7 @@ export const POST = async(req)=>{
               img: isUserExist?.photoURL,
               village: isUserExist?.village,
               activated: isUserExist?.activated,
+              hidden: isUserExist?.hidden,
               date: isUserExist?.createdAt
         },'rajesh8875');
         // console.log(token);

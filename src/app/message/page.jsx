@@ -74,12 +74,12 @@ const page = () => {
             <p className="mb-8 lg:mb-16 font-light text-center  text-gray-400 sm:text-xl">Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.</p>
                 <div className="space-y-8">
                 <div>
-                    <label for="name" className="block mb-2 text-sm font-medium text-gray-300">Your Name</label>
-                    <input type="text" value={name} onChange={(e)=>setName(e.target.value)} id="email" className="shadow-sm  border text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500 shadow-sm-light" placeholder="Raja" required />
+                    <label for="name" className="block mb-2 text-sm font-medium text-gray-300">Your Nikname</label>
+                    <input type="text" value={name} maxlength="10" onChange={(e)=>setName(e.target.value)}  className="shadow-sm  border text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500 shadow-sm-light" placeholder="Raja" required />
                 </div>
                 <div>
                     <label for="subject" className="block mb-2 text-sm font-medium text-gray-300">Subject</label>
-                    <input type="text" value={subject} onChange={(e)=>setSubject(e.target.value)} id="subject" className="block p-3 w-full text-sm rounded-lg border shadow-sm focus:ring-primary-500 focus:border-primary-500 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500 shadow-sm-light" placeholder="Let us know how we can help you" required />
+                    <input type="text" value={subject} maxLength='70' onChange={(e)=>setSubject(e.target.value)} id="subject" className="block p-3 w-full text-sm rounded-lg border shadow-sm focus:ring-primary-500 focus:border-primary-500 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500 shadow-sm-light" placeholder="Let us know how we can help you" required />
                 </div>
                 <div className="sm:col-span-2">
                     <label for="message" className="block mb-2 text-sm font-medium  text-gray-400">Your message</label>

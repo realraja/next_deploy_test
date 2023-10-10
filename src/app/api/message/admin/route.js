@@ -1,21 +1,21 @@
-import connectDB from "@/database";
-import User from "@/models/user";
+import connectDB from "@/database"
+import Message from "@/models/message";
 import { NextResponse } from "next/server";
 
 
-
-export const GET = async() =>{
+export const GET = async()=>{
     await connectDB();
 
     try {
-        const user = await User.find();
+        const messages = await Message.find();
         return NextResponse.json({
             status: 200,
             success: true,
-            message: 'Users fetched successfully',
-            data: user
+            message: 'messages fetched successfully',
+            data: messages
         })
     } catch (error) {
+        console.log(error);
         return NextResponse.json({
             status:400,
             success: false,
