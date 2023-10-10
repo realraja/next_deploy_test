@@ -34,3 +34,12 @@ body::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
 }
+
+#image{
+  /* box-shadow: 20px 10px 5px 0px rgba(211, 26, 239, 0.877);
+
+  box-shadow: 3px 3px red, -1em 0 .4em olive; */
+  box-shadow:
+  0em 0em 2em 1em #e419d6d3,
+  0 0em 4em 4em rgba(98, 2, 215, 0.854)
+}

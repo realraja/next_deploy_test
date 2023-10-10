@@ -5,6 +5,30 @@ import { NextResponse } from "next/server";
 
 
 
+export const GET = async(request,{params}) =>{
+    await connectDB();
+
+    try {
+        const userId = params.id;
+        const user = await User.findById(userId);
+        if(!user){
+            return NextResponse.json({
+                status: 404,
+                success : false,
+                message:'User not found'
+            })
+        }
+
+        return NextResponse.json({stauts:200,success:true,user:params.id,message:'User Deleted successfully',user:user});
+    } catch (error) {
+        console.log("error===>",error);
+        return NextResponse.json({
+            status: 404,
+            success : false,
+            message:error
+        })
+    }
+}
 export const DELETE = async(request,{params}) =>{
     await connectDB();
 

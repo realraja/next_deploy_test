@@ -43,13 +43,7 @@ export const POST = async(req)=>{
         const token = await jwt.sign({
             email: isUserExist?.email,
               name: isUserExist?.name,
-              _id: isUserExist?._id,
-              role: isUserExist?.role,
-              img: isUserExist?.photoURL,
-              village: isUserExist?.village,
-              activated: isUserExist?.activated,
-              hidden: isUserExist?.hidden,
-              date: isUserExist?.createdAt
+              _id: isUserExist?._id
         },'rajesh8875');
         // console.log(token);
 

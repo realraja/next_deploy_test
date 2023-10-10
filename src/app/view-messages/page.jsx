@@ -101,7 +101,7 @@ const AdminMessages = ({ user,handleClickOnCheck,hidden }) => (
       <div className="flex-initial flex justify-center items-center space-x-4 md:space-x-0 md:flex-col md:min-w-[130px] md:max-w-[130px] text-center m-auto p-2 mx-2 border-b-2 md:border-b-0 md:border-r-2 border-gray-400">
         <img
           src={user?.img}
-          className="w-[45px] h-[45px]  md:m-auto rounded-full flex-initial"
+          className="w-[45px] h-[45px] mx-5  md:m-auto rounded-full flex-initial "
           alt={user?.name}
         />
         <div className="">

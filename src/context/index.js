@@ -1,5 +1,6 @@
 'use client';
 
+import axios from "axios";
 import Cookies from "js-cookie";
 import jwt from 'jsonwebtoken'
 import { usePathname, useRouter } from "next/navigation";
@@ -33,9 +34,19 @@ export default function GlobalState({ children }) {
         if(token !== undefined){
             let tokenData = jwt.verify(token,'rajesh8875');
             setIsAuthUser(true);
-            // const userData = JSON.parse(localStorage.getItem('user')) || {};
-            // console.log(tokenData)
-            setUser(tokenData);
+            
+            axios.get(`/api/allusers/${tokenData?._id}`)
+            .then(function (response) {
+                // handle success
+                console.log(response);
+                setUser(response.data.user);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+                setIsAuthUser(false);
+            })
+            
         }else{
             setIsAuthUser(false);
         }
