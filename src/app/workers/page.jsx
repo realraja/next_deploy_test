@@ -65,7 +65,7 @@ import axios from "axios"
       const fetchUsers = async() =>{
         
         // const data =  await getAllUsers();
-        const {data} =  await axios.get('/api/allusers');
+        const {data} =  await axios.get('/api/allusers',{ cache: false });
         console.log(data?.success);       
 
         if (data?.success) {
