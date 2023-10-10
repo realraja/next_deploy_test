@@ -5,11 +5,10 @@ import { TrashIcon, UserMinusIcon , UserPlusIcon } from "@heroicons/react/24/out
 import { useContext, useEffect, useState } from "react"
 import { GlobalContext } from "@/context"
 import { useRouter } from "next/navigation";
-import { UpdateUserStatus ,DeleteUserStatus} from "@/services/users"
+import { UpdateUserStatus ,DeleteUserStatus, getAllUsers} from "@/services/users"
 import { toast } from "react-toastify"
 import { PuffLoader } from "react-spinners"
 import ComfirmButton from '@/components/ComfirmButton'
-import axios from "axios"
   
   export default function Page() {
     const {user} = useContext(GlobalContext);
@@ -64,18 +63,18 @@ import axios from "axios"
 
       const fetchUsers = async() =>{
         
-        // const data =  await getAllUsers();
-        const res =  await axios.get('/api/allusers',{
-          // query URL without using browser cache
-          headers: {
-            'Cache-Control': 'no-cache',
-            'Pragma': 'no-cache',
-            'Expires': '0',
-          },
-        });
-        console.log(res?.data?.success);       
+        const data =  await getAllUsers();
+        // const {data} =  await axios.get('/api/allusers',{
+        //   // query URL without using browser cache
+        //   headers: {
+        //     'Cache-Control': 'no-cache',
+        //     'Pragma': 'no-cache',
+        //     'Expires': '0',
+        //   },
+        // });
+        console.log(data);       
 
-        if (res?.data?.success) {
+        if (data?.success) {
           setUsersData(data.data);
           setLoading(false);
         } else {

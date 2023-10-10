@@ -38,8 +38,9 @@ const page = () => {
     const fetchUsers = async() =>{
       
       // const data =  await getAllUsers();
-      const {data} =  await axios.get('/api/message/admin');
-      console.log(data?.success);       
+      const {data} =  await axios.get('/api/message/admin', { cache: false });
+
+      console.log(data);       
 
       if (data?.success) {
         setMessageData(data.data);
