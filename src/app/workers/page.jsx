@@ -65,10 +65,17 @@ import axios from "axios"
       const fetchUsers = async() =>{
         
         // const data =  await getAllUsers();
-        const {data} =  await axios.get('/api/allusers',{ cache: false });
-        console.log(data?.success);       
+        const res =  await axios.get('/api/allusers',{
+          // query URL without using browser cache
+          headers: {
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache',
+            'Expires': '0',
+          },
+        });
+        console.log(res?.data?.success);       
 
-        if (data?.success) {
+        if (res?.data?.success) {
           setUsersData(data.data);
           setLoading(false);
         } else {
