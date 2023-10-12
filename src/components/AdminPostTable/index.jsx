@@ -422,19 +422,16 @@ const UserTableBody = ({
       {index}.
     </td>
 
-    <td className="p-2 md:p-4   items-center text-center whitespace-nowrap md:space-x-6 md:mr-12 lg:mr-0">
-      <img
-        className="h-10 hidden md:table-cell w-10 rounded-full"
-        src={img}
-        alt={name}
-      />
-      <div className="text-sm font-normal text-gray-400 m-auto md:m-0">
-        <div className="text-base font-semibold text-gray-50">{name}</div>
-        <div className="text-sm font-normal text-gray-400 ">
-          <span className="hidden md:block">[{email}]</span>
-          <span className="md:hidden">[{village}]</span>
-        </div>
-      </div>
+    <td className="p-2 md:p-4 flex items-center whitespace-nowrap md:space-x-6 md:mr-12 lg:mr-0">
+            <img className="h-10 hidden md:table-cell w-10 rounded-full"
+              src={img} alt={name} />
+            <div className="text-sm font-normal text-gray-400 m-auto md:m-0">
+              <div className="text-base font-semibold text-gray-50">{name}</div>
+              <div className="text-sm font-normal text-gray-400 ">
+                <span className="hidden md:block">[{email}]</span>
+                <span className="md:hidden">[{village}]</span>
+              </div>
+            </div>
     </td>
     <td className="p-4 hidden md:table-cell text-center whitespace-nowrap text-base font-medium text-gray-50">
       {village}

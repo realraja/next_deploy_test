@@ -211,101 +211,102 @@ export const EmployeesformData = () => {
       }
     </div>  
 
-      {loading ? (
-        <div className=" items-center text-center flex">
-          <PuffLoader className="m-auto" size={"240px"} color={"#9224f0"} />{" "}
-        </div>
-      ) : (
-        <main>
-          <div className="flex flex-col">
-            <div className="overflow-x-auto">
-              <div className="align-middle inline-block min-w-full">
-                <div className="shadow overflow-hidden">
-                  <table className="table-fixed min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-900">
-                      <tr>
-                        {/* <th scope="col" className="p-4">
-                          <div className="flex items-center">
-                            <label className="sr-only">#</label>
-                          </div>
-                        </th> */}
-                        <th
-                          scope="col"
-                          className="p-4 hidden lg:table-cell text-base font-medium text-gray-400 uppercase"
-                        >
-                          S.N.
-                        </th>
-                        <th
-                          scope="col"
-                          className="p-4 hidden lg:table-cell md:text-base font-medium text-gray-400 uppercase"
-                        >
-                          Name
-                        </th>
-                        <th
-                          scope="col"
-                          className="p-4 hidden md:table-cell text-base font-medium text-gray-400 uppercase"
-                        >
-                          Village
-                        </th>
-                        <th
-                          scope="col"
-                          className="p-4  text-base font-medium text-gray-400 uppercase"
-                        >
-                          Post At
-                        </th>
-                        <th
-                          scope="col"
-                          className="p-4  text-base font-medium text-gray-400 uppercase"
-                        >
-                          Machines
-                        </th>
-                        <th
-                          scope="col"
-                          className="p-4 text-base font-medium text-gray-400 uppercase"
-                        >
-                          Time(H:M)
-                        </th>
-                        <th
-                          scope="col"
-                          className="p-4 text-base font-medium text-gray-400 uppercase"
-                        >
-                          checked
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="bg-gray-700 text-white divide-y divide-gray-200">
-                      {usersPost.map((item, index) =>
-                        user?.email === item?.email ? (
-                          <UserTableBody
-                            index={index + 1}
-                            key={index}
-                            name={item?.name}
-                            village={item?.village}
-                            email={item?.email}
-                            status={true}
-                            createdAt={item?.createDate}
-                            machines={item?.machines}
-                            hour={item?.timeh}
-                            minuts={item?.timem}
-                            isChecked={item?.ischeck}
-                          />
-                        ) : null
-                      )}
-                    </tbody>
-                  </table>
-
-                  <div className="min-h-20 p-5 my-5 bg-gray-700 flex text-center items-center justify-center">
-                    <p className="text-3xl font-extralight text-red-500 ">
-                      Note:If you want any account's backup please contact to
-                      developer!
-                    </p>
+    {
+      user?(
+        loading ? (
+          <div className=" items-center text-center flex">
+            <PuffLoader className="m-auto" size={"240px"} color={"#9224f0"} />{" "}
+          </div>
+        ) : (
+          <main>
+            <div className="flex flex-col">
+              <div className="overflow-x-auto">
+                <div className="align-middle inline-block min-w-full">
+                  <div className="shadow overflow-hidden">
+                    <table className="table-fixed min-w-full divide-y divide-gray-200">
+                      <thead className="bg-gray-900">
+                        <tr>
+                          {/* <th scope="col" className="p-4">
+                            <div className="flex items-center">
+                              <label className="sr-only">#</label>
+                            </div>
+                          </th> */}
+                          <th
+                            scope="col"
+                            className="p-4 hidden lg:table-cell text-base font-medium text-gray-400 uppercase"
+                          >
+                            S.N.
+                          </th>
+                          <th
+                            scope="col"
+                            className="p-4 hidden lg:table-cell md:text-base font-medium text-gray-400 uppercase"
+                          >
+                            Name
+                          </th>
+                          <th
+                            scope="col"
+                            className="p-4 hidden md:table-cell text-base font-medium text-gray-400 uppercase"
+                          >
+                            Village
+                          </th>
+                          <th
+                            scope="col"
+                            className="p-4  text-base font-medium text-gray-400 uppercase"
+                          >
+                            Post At
+                          </th>
+                          <th
+                            scope="col"
+                            className="p-4  text-base font-medium text-gray-400 uppercase"
+                          >
+                            Machines
+                          </th>
+                          <th
+                            scope="col"
+                            className="p-4 text-base font-medium text-gray-400 uppercase"
+                          >
+                            Time(H:M)
+                          </th>
+                          <th
+                            scope="col"
+                            className="p-4 text-base font-medium text-gray-400 uppercase"
+                          >
+                            checked
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody className="bg-gray-700 text-white divide-y divide-gray-200">
+                        {usersPost.map((item, index) =>
+                          user?.email === item?.email ? (
+                            <UserTableBody
+                              index={index + 1}
+                              key={index}
+                              name={item?.name}
+                              village={item?.village}
+                              email={item?.email}
+                              status={true}
+                              createdAt={item?.createDate}
+                              machines={item?.machines}
+                              hour={item?.timeh}
+                              minuts={item?.timem}
+                              isChecked={item?.ischeck}
+                            />
+                          ) : null
+                        )}
+                      </tbody>
+                    </table>
+  
+                   
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </main>
-      )}
+          </main>
+        )
+      ):null
+    }
+
+      {}
     </>
   );
 };
@@ -354,7 +355,7 @@ const UserTableBody = ({
     </td>
     <td className="p-4  whitespace-nowrap ">
       {isChecked ? (
-        <CheckBadgeIcon className="h-5 w-5 text-green-500" />
+        <CheckBadgeIcon className="h-5 w-5  m-auto text-green-500" />
       ) : (
         <XCircleIcon className="h-5 w-5 m-auto text-rose-500" />
       )}

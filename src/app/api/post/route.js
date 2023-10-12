@@ -58,7 +58,7 @@ export const POST = async(req)=>{
 
         const today = new Date().getDate();
         const lastPostDay = await isUserTodayPost[0]?.createdAt?.getDate();
-        if(today !== lastPostDay){
+        if(today === lastPostDay){
             return NextResponse.json({
                 status: 400,
                 success: false,
