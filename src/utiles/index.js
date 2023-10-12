@@ -7,14 +7,14 @@
 //   ];
   export const navOptions = [
     { name: "home", href: "/", current: true },
-    { name: "Posts", href: "/posts", current: false },
     { name: "Send Message", href: "/message", current: false },
+    { name: "Comment", href: "/comment", current: false },
   ];
   
   export const adminNavOptions = [
     { name: "home", href: "/", current: true },
-    { name: "Manage Work", href: "/works", current: false },
     { name: "Employees", href: "/workers", current: false },
+    { name: "Comment", href: "/comment", current: false },
   ];
 
   export const userNavigation = [
@@ -117,139 +117,14 @@
     },
   ];
   
-  export const adminAddProductformControls = [
-    {
-      id: "name",
-      type: "text",
-      placeholder: "Enter name",
-      label: "Name",
-      componentType: "input",
-    },
-    {
-      id: "price",
-      type: "number",
-      placeholder: "Enter price",
-      label: "Price",
-      componentType: "input",
-    },
-    {
-      id: "description",
-      type: "text",
-      placeholder: "Enter description",
-      label: "Description",
-      componentType: "input",
-    },
-    {
-      id: "category",
-      type: "",
-      placeholder: "",
-      label: "Category",
-      componentType: "select",
-      options: [
-        {
-          id: "men",
-          label: "Men",
-        },
-        {
-          id: "women",
-          label: "Women",
-        },
-        {
-          id: "kids",
-          label: "Kids",
-        },
-      ],
-    },
-    {
-      id: "deliveryInfo",
-      type: "text",
-      placeholder: "Enter deliveryInfo",
-      label: "Delivery Info",
-      componentType: "input",
-    },
-    {
-      id: "onSale",
-      type: "",
-      placeholder: "",
-      label: "On Sale",
-      componentType: "select",
-      options: [
-        {
-          id: "yes",
-          label: "Yes",
-        },
-        {
-          id: "no",
-          label: "No",
-        },
-      ],
-    },
-    {
-      id: "priceDrop",
-      type: "number",
-      placeholder: "Enter Price Drop",
-      label: "Price Drop",
-      componentType: "input",
-    },
-  ];
-  
-  export const AvailableSizes = [
-    {
-      id: "s",
-      label: "S",
-    },
-    {
-      id: "m",
-      label: "M",
-    },
-    {
-      id: "l",
-      label: "L",
-    },
-  ];
-  
+
+
 
   
   export const firebaseStroageURL =
     "gs://ecommerce-raja.appspot.com";
   
-  export const addNewAddressFormControls = [
-    {
-      id: "fullName",
-      type: "input",
-      placeholder: "Enter your full name",
-      label: "Full Name",
-      componentType: "input",
-    },
-    {
-      id: "address",
-      type: "input",
-      placeholder: "Enter your full address",
-      label: "Address",
-      componentType: "input",
-    },
-    {
-      id: "city",
-      type: "input",
-      placeholder: "Enter your city",
-      label: "City",
-      componentType: "input",
-    },
-    {
-      id: "country",
-      type: "input",
-      placeholder: "Enter your country",
-      label: "Country",
-      componentType: "input",
-    },
-    {
-      id: "postalCode",
-      type: "input",
-      placeholder: "Enter your postal code",
-      label: "Postal Code",
-      componentType: "input",
-    },
-  ];
+
 
   export const firebaseConfig = {
     apiKey: "AIzaSyB4Qmn2kPRJAsQ181v-5JgyuNaKw8Ojwt8",
@@ -630,4 +505,67 @@
     },
   ]
  
+
+  export const optionPeople =  [
+    {
+      id: 1,
+      name: 'Wade Cooper',
+      avatar:
+        'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+      id: 2,
+      name: 'Arlene Mccoy',
+      avatar:
+        'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+      id: 3,
+      name: 'Devon Webb',
+      avatar:
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80',
+    },
+    {
+      id: 4,
+      name: 'Tom Cook',
+      avatar:
+        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+      id: 5,
+      name: 'Tanya Fox',
+      avatar:
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+      id: 6,
+      name: 'Hellen Schmidt',
+      avatar:
+        'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+      id: 7,
+      name: 'Caroline Schultz',
+      avatar:
+        'https://images.unsplash.com/photo-1568409938619-12e139227838?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+      id: 8,
+      name: 'Mason Heaney',
+      avatar:
+        'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+      id: 9,
+      name: 'Claudie Smitham',
+      avatar:
+        'https://images.unsplash.com/photo-1584486520270-19eca1efcce5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+      id: 10,
+      name: 'Emil Schaefer',
+      avatar:
+        'https://images.unsplash.com/photo-1561505457-3bcad021f8ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+  ]
   

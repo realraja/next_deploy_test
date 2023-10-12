@@ -364,7 +364,3 @@ const UserTableBody = ({
 
 
 
-export const EmployeesPostData = () => {
-
-  
-}
