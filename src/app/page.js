@@ -1,10 +1,10 @@
+import { EmployeesformData } from "@/components/TableComponent";
 
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen items-center">
-      Namastee Duniaa
-      
+    <main>
+      <EmployeesformData />
     </main>
   )
 }

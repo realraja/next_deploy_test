@@ -62,8 +62,8 @@ export default function index({ children }) {
         <body class="h-full">
         ```
       */}
-      <div className="min-h-full z-100">
-        <Disclosure as="nav" className="bg-gray-800 min-w-full fixed top-0">
+      <div className="min-h-full ">
+        <Disclosure as="nav" className="bg-gray-800 min-w-full fixed top-0 z-10">
           {({ open }) => (
             <>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

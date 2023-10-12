@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 import { PostNewUsersWork } from "@/services/post";
 import ComponentLevelLoader from "@/components/Loader/componentlevel";
 
-const page = () => {
+export const EmployeesformData = () => {
   const { componentLevelLoader, setComponentLevelLoader, user } =
     useContext(GlobalContext);
 
@@ -361,4 +361,10 @@ const UserTableBody = ({
     </td>
   </tr>
 );
-export default page;
+
+
+
+export const EmployeesPostData = () => {
+
+  
+}

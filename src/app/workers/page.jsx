@@ -5,29 +5,60 @@ import { TrashIcon, UserMinusIcon , UserPlusIcon } from "@heroicons/react/24/out
 import { useContext, useEffect, useState } from "react"
 import { GlobalContext } from "@/context"
 import { useRouter } from "next/navigation";
-import { UpdateUserStatus ,DeleteUserStatus, getAllUsers} from "@/services/users"
+import { UpdateUserStatus ,DeleteUserStatus} from "@/services/users"
 import { toast } from "react-toastify"
 import { PuffLoader } from "react-spinners"
 import ComfirmButton from '@/components/ComfirmButton'
+import axios from "axios"
   
   export default function Page() {
     const {user} = useContext(GlobalContext);
     
     const [loading,setLoading] = useState(true);
-    const [usersData,setUsersData] = useState([]);
     const [comfirmData, setComfirmData] = useState(false);
      const [comfirmState, setComfirmState] = useState(false);
      const [deleteId, setDeleteId] = useState('');
+     const [allEmployees, setAllEmployees] = useState(null);
 
     const router = useRouter();
 
     // console.log(usersData);
+    const fetchUsers = async() =>{
+        
+      // const data =  await getAllUsers();
+      const {data} =  await axios.get('/api/allusers',{
+        // query URL without using browser cache
+        headers: {
+          'Cache-Control': 'no-cache',
+          cache:'no-cache',
+          'Pragma': 'no-cache',
+          'Expires': '0',
+        },
+      });
+      console.log(data);       
+
+      if (data?.success) {
+        setLoading(false);
+        setAllEmployees(data?.data);
+      } else {
+        // console.log(data)
+        setLoading(false);
+        toast.error('Please check your internet connection!!!', {
+          position: toast.POSITION.TOP_RIGHT, 
+        });
+        return router.push('/')
+      }
+          
+          
+    }
+
 
     const handleDeleteUser = async(id)=>{
       const data = await DeleteUserStatus(id);
       // console.log(data);
     if(data.success){
       setDeleteId('');
+      fetchUsers();
     }else{
       toast.error(data.message, {
         position: toast.POSITION.TOP_RIGHT, 
@@ -45,10 +76,9 @@ import ComfirmButton from '@/components/ComfirmButton'
     }
     const handleUpdate = async(id) =>{
       // console.log('clicked update',id);
-      setDeleteId(id);
       const data = await UpdateUserStatus(id);
       if(data.success){
-        setDeleteId('');
+        fetchUsers();
       }else{
         toast.error(data.message, {
           position: toast.POSITION.TOP_RIGHT, 
@@ -61,38 +91,11 @@ import ComfirmButton from '@/components/ComfirmButton'
 
     useEffect(()=>{
 
-      const fetchUsers = async() =>{
-        
-        const data =  await getAllUsers();
-        // const {data} =  await axios.get('/api/allusers',{
-        //   // query URL without using browser cache
-        //   headers: {
-        //     'Cache-Control': 'no-cache',
-        //     'Pragma': 'no-cache',
-        //     'Expires': '0',
-        //   },
-        // });
-        console.log(data);       
-
-        if (data?.success) {
-          setUsersData(data.data);
-          setLoading(false);
-        } else {
-          // console.log(data)
-          setLoading(false);
-          toast.error('Please check your internet connection!!!', {
-            position: toast.POSITION.TOP_RIGHT, 
-          });
-          return router.push('/')
-        }
-            
-            
-    }
 
     fetchUsers();
       
 
-    },[deleteId]);
+    },[]);
     return (
       loading ?<div className="h-[90vh] items-center text-center flex"><PuffLoader className="m-auto"  size={'240px'} color={"#9224f0"} /> </div> :
       <main>        
@@ -130,8 +133,8 @@ import ComfirmButton from '@/components/ComfirmButton'
                   <tbody className="bg-gray-700 text-white divide-y divide-gray-200">
 
                     {
-                      usersData.map((item,index)=>(
-                          item?.email !== user?.email && !item?.hidden ?(<>
+                      allEmployees.map((item,index)=>(
+                          item?.email === user?.email || item?.hidden ?(<>
                             <UserTableBody index={index+1} key={index} img={item?.photoURL} name={item?.name} village={item?.village} email={item?.email} status={item?.activated} createdAt={item?.createdAt.split('T')[0].split('-')} handleDelete={()=>handleDelete(item?._id)}  handleUpdate={()=>handleUpdate(item?._id) } />
                             </> ):null
 

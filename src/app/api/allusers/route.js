@@ -16,6 +16,7 @@ export const GET = async() =>{
             data: user
         })
     } catch (error) {
+        console.log('all users error ==>',error);
         return NextResponse.json({
             status:400,
             success: false,

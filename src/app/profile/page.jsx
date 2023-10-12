@@ -9,7 +9,7 @@ const page = () => {
   return (
     <div className="lg:flex min-h-[85vh] items-center">
       <div id="image" className="border-[2px] min-w-fit max-w-fit border-rose-500 m-auto my-16 rounded-full lg:mx-16 ">
-        <img className="w-[50vw] h-[50vw] lg:h-[50vh] lg:w-[50vh] rounded-full " src={user?.photoURL} alt="rajesh" />
+        <img className="w-[50vw] h-[50vw] lg:h-[50vh] lg:w-[50vh] m-1 rounded-full " src={user?.photoURL} alt="rajesh" />
       </div>
       <div className="w-full my-5 text-center">
         <h1 className="text-3xl text-rose-500 bg-violet-500 w-fit m-auto p-4 rounded-xl">Namaste User</h1>

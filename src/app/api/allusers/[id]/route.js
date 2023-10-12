@@ -44,6 +44,7 @@ export const DELETE = async(request,{params}) =>{
         }
 
         user.hidden = !user.hidden;
+        user.activated = false;
         await user.save();
         return NextResponse.json({stauts:200,success:true,user:params.id,message:'User Deleted successfully',user:user});
     } catch (error) {
@@ -74,7 +75,7 @@ export const PUT = async(request,{params}) =>{
 
         user.activated = !user.activated;
         await user.save();
-        return NextResponse.json({stauts:200,success:true,user:params.id,message:'task updated successfully',user:user});
+        return NextResponse.json({stauts:200,success:true,message:'task updated successfully',user:user});
     } catch (error) {
         console.log("error===>",error);
         return NextResponse.json({
