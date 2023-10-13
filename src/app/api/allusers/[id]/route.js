@@ -19,7 +19,7 @@ export const GET = async(request,{params}) =>{
             })
         }
 
-        return NextResponse.json({stauts:200,success:true,user:params.id,message:'User fetch successfully',user:user});
+        return NextResponse.json({stauts:200,success:true,message:'User fetch successfully',user:user});
     } catch (error) {
         console.log("error===>",error);
         return NextResponse.json({

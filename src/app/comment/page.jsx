@@ -6,6 +6,7 @@ import { updateAMessage } from "@/services/message";
 import { ChatBubbleBottomCenterIcon } from "@heroicons/react/24/outline";
 import { CheckIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
 import { PuffLoader } from "react-spinners";
@@ -138,19 +139,27 @@ const AdminMessages = ({ user }) => (
   <div className="flex flex-col m-8">
     <div className="md:min-h-[70px] hidden md:flex  m-1 w-full  border-2 border-violet-500 rounded-md">
       <div className="flex-initial flex justify-center items-center  flex-col md:min-w-[130px] md:max-w-[130px] text-center m-auto md:p-2 md:mx-2   border-r-2 border-gray-400">
+      <Link href={`/profile/${user?.user}`}>
         <img
           src={user?.img}
           className="w-[45px] h-[45px]  md:m-auto rounded-full flex-initial "
           alt={user?.name}
         />
+        </Link>
         <div className="m-auto">
 
         <span className="font-light hidden md:block md:text-sm uppercase break-words break-all">{user?.name} </span>
+        
         </div>
       </div>
 
       <div className="w-full text-start break-all  p-2 flex-initial ">
+        <div className="flex justify-between">
         <p className="text-gray-500 text-sm italic">{user.email}</p>
+        <span className="text-gray-500 ">
+        {user?.createDate[3]}:{user?.createDate[4]}[{user?.createDate[0]}-{user?.createDate[1]}-{user?.createDate[2]}]
+      </span>
+        </div>
         <p className="font-extralight break-words break-all text-xl  ">
           {user?.comment}
         </p>
@@ -163,17 +172,22 @@ const AdminMessages = ({ user }) => (
     <div className="flex flex-col md:hidden m-1 w-full  border-2 border-violet-500 rounded-md">
       <div className="flex-initial flex justify-start ">
       
+      <Link href={`/profile/${user?.user}`}>
         <img
           src={user?.img}
           className="w-[45px] h-[45px] m-3  rounded-full  "
           alt={user?.name}
         />
-       
+       </Link>
         
         <div className="px-3 my-auto border-l-2">
-          <p className="uppercase">{user?.name}</p>
+          <p className="uppercase">{user?.name}
+          <span className="text-gray-500">
+        [{user?.createDate[0]}-{user?.createDate[1]}-{user?.createDate[2]}]
+      </span></p>
           <p className="text-gray-500 ">[{user?.email}]</p>
         </div>
+        
       </div>
 
       <div className="w-full text-start break-all  p-2 flex-initial ">

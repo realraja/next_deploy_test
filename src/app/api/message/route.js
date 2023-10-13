@@ -63,3 +63,26 @@ export const POST = async(req)=>{
 
     
 }
+
+
+export const GET = async()=>{
+    await connectDB();
+
+    try {
+        const messages = await Message.find().sort({$natural:-1});
+        return NextResponse.json({
+            status: 200,
+            success: true,
+            message: 'messages fetched successfully',
+            data: messages
+        })
+    } catch (error) {
+        console.log(error);
+        return NextResponse.json({
+            status:400,
+            success: false,
+            message: 'Error fetching users',
+            data: error
+        })
+    }
+}

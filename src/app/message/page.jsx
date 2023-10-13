@@ -10,14 +10,11 @@ const page = () => {
 
     const {componentLevelLoader,setComponentLevelLoader,isAuthUser,user} = useContext(GlobalContext);
 
-    const [name,setName] = useState('');
     const [subject,setSubject] = useState('');
     const [message,setMessage] = useState('');
 
     function isValidForm() {
-        return name &&
-        name.trim() !== "" &&
-        subject &&
+        return subject &&
         subject.trim() !== ""&&
         message &&
         message.trim() !== ""
@@ -25,7 +22,7 @@ const page = () => {
           : false;
       }
       const formData = {
-        name: name,
+        name: user?.name,
         subject: subject,
         message: message,
         email: user?.email
@@ -54,7 +51,6 @@ const page = () => {
         toast.success(res.message, {
             position: toast.POSITION.TOP_RIGHT, 
         });
-        setName('');
         setSubject('');
         setMessage('');
         setComponentLevelLoader({ loading: false, id: "" });
@@ -70,13 +66,21 @@ const page = () => {
     <div>
       <section className= "bg-gray-900">
         <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-            <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center  text-white">Message Us</h2>
+
+          <div>
+            {
+              user?.role === 'admin'?(
+<h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center  text-white">Send Notification to Workers!</h2>
+              ):(
+                <>
+                <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center  text-white">Message Us</h2>
             <p className="mb-8 lg:mb-16 font-light text-center  text-gray-400 sm:text-xl">Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.</p>
+                </>
+              )
+            }
+          </div>
+            
                 <div className="space-y-8">
-                <div>
-                    <label for="name" className="block mb-2 text-sm font-medium text-gray-300">Your Nikname</label>
-                    <input type="text" value={name} maxlength="10" onChange={(e)=>setName(e.target.value)}  className="shadow-sm  border text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500 shadow-sm-light" placeholder="Raja" required />
-                </div>
                 <div>
                     <label for="subject" className="block mb-2 text-sm font-medium text-gray-300">Subject</label>
                     <input type="text" value={subject} maxLength='70' onChange={(e)=>setSubject(e.target.value)} id="subject" className="block p-3 w-full text-sm rounded-lg border shadow-sm focus:ring-primary-500 focus:border-primary-500 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500 shadow-sm-light" placeholder="Let us know how we can help you" required />

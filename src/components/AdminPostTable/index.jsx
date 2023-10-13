@@ -5,20 +5,18 @@ import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 
 import { CheckBadgeIcon, XCircleIcon } from "@heroicons/react/24/outline";
-import React, { useContext, useEffect, useState } from "react";
-import { GlobalContext } from "@/context";
+import React, {  useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { PuffLoader } from "react-spinners";
 import axios from "axios";
 import { optionPeople } from "@/utiles";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export const EmployeesPostData = () => {
-  const { user } = useContext(GlobalContext);
 
   const [selected, setSelected] = useState({all: true,photoURL:'https://firebasestorage.googleapis.com/v0/b/ecommerce-raja.appspot.com/o/onlyme%2Ffree-user-group-icon-296-thumb.png?alt=media&token=1523cda7-3eb3-4b49-998e-5090d35b28da','name':'All users'});
   const [people, setPeople] = useState(optionPeople);
@@ -26,14 +24,11 @@ export const EmployeesPostData = () => {
   const [loading, setLoading] = useState(true);
   const [usersPost, setUsersPost] = useState([]);
 
-  // const router = useRouter();
-  console.log(selected);
-  // console.log(todayHours,todayMachines,todayMinuts)
+
   const fetchPosts = async () => {
-    // console.log(user?._id)
-    // const data =  await getAllUsers();
+
     const { data } = await axios.get(`/api/post`, {
-      // query URL without using browser cache
+
       headers: {
         "Cache-Control": "no-cache",
         cache: "no-cache",
@@ -326,7 +321,7 @@ export const EmployeesPostData = () => {
                           scope="col"
                           className="p-4  text-base font-medium text-gray-400 uppercase"
                         >
-                          Machines
+                          M.No.
                         </th>
                         <th
                           scope="col"
@@ -366,10 +361,12 @@ export const EmployeesPostData = () => {
                             minuts={item?.timem}
                             isChecked={item?.ischeck}
                             handleUpdate={() => handleUpdate(item?._id)}
+                            id={item.id}
                           />
                       ):(
                         selected?.email === item?.email ? (
                           <UserTableBody
+                            id={item.id}
                             img={item?.imageUrl}
                             index={index + 1}
                             key={index}
@@ -403,6 +400,7 @@ export const EmployeesPostData = () => {
 const UserTableBody = ({
   name,
   img,
+  id,
   village,
   email,
   machines,
@@ -423,6 +421,7 @@ const UserTableBody = ({
     </td>
 
     <td className="p-2 md:p-4 flex items-center whitespace-nowrap md:space-x-6 md:mr-12 lg:mr-0">
+    <Link href={`/profile/${id}`}>
             <img className="h-10 hidden md:table-cell w-10 rounded-full"
               src={img} alt={name} />
             <div className="text-sm font-normal text-gray-400 m-auto md:m-0">
@@ -432,9 +431,12 @@ const UserTableBody = ({
                 <span className="md:hidden">[{village}]</span>
               </div>
             </div>
+      </Link>
     </td>
     <td className="p-4 hidden md:table-cell text-center whitespace-nowrap text-base font-medium text-gray-50">
-      {village}
+      
+        {village}
+   
     </td>
     <td className="p-4  whitespace-nowrap text-center text-base font-medium text-gray-50">
       <p>
@@ -473,86 +475,3 @@ const UserTableBody = ({
   </tr>
 );
 
-// const UsersList = (people, selected, setSelected) => (
-//   <Listbox value={selected} onChange={setSelected}>
-//     {({ open }) => (
-//       <>
-//         <Listbox.Label className="block text-sm font-medium leading-6 text-gray-900">
-//           Assigned to
-//         </Listbox.Label>
-//         <div className="relative mt-2">
-//           <Listbox.Button className="relative w-full cursor-default rounded-md bg-gray-800 py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
-//             <span className="flex items-center">
-//               <img
-//                 src={selected.avatar}
-//                 alt=""
-//                 className="h-5 w-5 flex-shrink-0 rounded-full"
-//               />
-//               <span className="ml-3 block truncate">{selected.name}</span>
-//             </span>
-//             <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
-//               <ChevronUpDownIcon
-//                 className="h-5 w-5 text-gray-400"
-//                 aria-hidden="true"
-//               />
-//             </span>
-//           </Listbox.Button>
-
-//           <Transition
-//             show={open}
-//             as={Fragment}
-//             leave="transition ease-in duration-100"
-//             leaveFrom="opacity-100"
-//             leaveTo="opacity-0"
-//           >
-//             <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-//               {optionPeople.map((person) => (
-//                 <Listbox.Option
-//                   key={person.id}
-//                   className={({ active }) =>
-//                     classNames(
-//                       active ? "bg-indigo-600 text-white" : "text-gray-900",
-//                       "relative cursor-default select-none py-2 pl-3 pr-9"
-//                     )
-//                   }
-//                   value={person}
-//                 >
-//                   {({ selected, active }) => (
-//                     <>
-//                       <div className="flex items-center">
-//                         <img
-//                           src={person.avatar}
-//                           alt=""
-//                           className="h-5 w-5 flex-shrink-0 rounded-full"
-//                         />
-//                         <span
-//                           className={classNames(
-//                             selected ? "font-semibold" : "font-normal",
-//                             "ml-3 block truncate"
-//                           )}
-//                         >
-//                           {person.name}
-//                         </span>
-//                       </div>
-
-//                       {selected ? (
-//                         <span
-//                           className={classNames(
-//                             active ? "text-white" : "text-indigo-600",
-//                             "absolute inset-y-0 right-0 flex items-center pr-4"
-//                           )}
-//                         >
-//                           <CheckIcon className="h-5 w-5" aria-hidden="true" />
-//                         </span>
-//                       ) : null}
-//                     </>
-//                   )}
-//                 </Listbox.Option>
-//               ))}
-//             </Listbox.Options>
-//           </Transition>
-//         </div>
-//       </>
-//     )}
-//   </Listbox>
-// );

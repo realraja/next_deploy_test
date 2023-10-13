@@ -15,9 +15,9 @@ export const EmployeesformData = () => {
   const { componentLevelLoader, setComponentLevelLoader, user } =
     useContext(GlobalContext);
 
-  const [todayMachines, setTodayMachines] = useState("0");
-  const [todayHours, setTodayHours] = useState("0");
-  const [todayMinuts, setTodayMinuts] = useState("0");
+  const [todayMachines, setTodayMachines] = useState("1");
+  const [todayHours, setTodayHours] = useState("00");
+  const [todayMinuts, setTodayMinuts] = useState("00");
   const [loading, setLoading] = useState(true);
   const [usersPost, setUsersPost] = useState([]);
 
@@ -77,14 +77,10 @@ export const EmployeesformData = () => {
       toast.success(res.post, {
         position: toast.POSITION.TOP_RIGHT,
       });
-      setTodayHours("0");
-      setTodayMachines("0");
-      setTodayMinuts("0");
+      setTodayMinuts("00");
+      setTodayHours("00");
       setComponentLevelLoader({ loading: false, id: "" });
-      setUsersPost([]);
-      setLoading(true);
       fetchPosts();
-      router.refresh();
     } else {
       toast.error(res.post, {
         position: toast.POSITION.TOP_RIGHT,
@@ -114,7 +110,7 @@ export const EmployeesformData = () => {
               htmlFor="time"
               className="pt-0 pr-2 absolute pb-0 pl-2 -mt-8 mr-0 mb-0 -ml-3 font-medium text-gray-50 bg-gray-800 "
             >
-              Select Machines:
+              Select Machine No.:
             </p>
             <div class="flex justify-between">
               <select
@@ -259,7 +255,7 @@ export const EmployeesformData = () => {
                             scope="col"
                             className="p-4  text-base font-medium text-gray-400 uppercase"
                           >
-                            Machines
+                            M.No.
                           </th>
                           <th
                             scope="col"

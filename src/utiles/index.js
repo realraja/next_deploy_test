@@ -7,7 +7,7 @@
 //   ];
   export const navOptions = [
     { name: "home", href: "/", current: true },
-    { name: "Send Message", href: "/message", current: false },
+    { name: "Contact Us", href: "/message", current: false },
     { name: "Comment", href: "/comment", current: false },
   ];
   
@@ -15,6 +15,7 @@
     { name: "home", href: "/", current: true },
     { name: "Employees", href: "/workers", current: false },
     { name: "Comment", href: "/comment", current: false },
+    { name: "Send Notification", href: "/message", current: false },
   ];
 
   export const userNavigation = [
@@ -138,10 +139,6 @@
 
 
   export const optionMachine =[
-    {
-      id: "00",
-      label: '00',
-    },
     {
       id: "01",
       label: '01',

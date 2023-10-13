@@ -7,7 +7,7 @@ export const GET = async()=>{
     await connectDB();
 
     try {
-        const messages = await Message.find();
+        const messages = await Message.find().sort({$natural:-1});
         return NextResponse.json({
             status: 200,
             success: true,

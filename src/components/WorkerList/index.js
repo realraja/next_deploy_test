@@ -4,7 +4,6 @@ import { CheckBadgeIcon, XCircleIcon } from "@heroicons/react/24/solid"
 import { TrashIcon, UserMinusIcon , UserPlusIcon } from "@heroicons/react/24/outline"
 import { useContext, useEffect, useState } from "react"
 import { GlobalContext } from "@/context"
-import { useRouter } from "next/navigation";
 import { UpdateUserStatus ,DeleteUserStatus} from "@/services/users"
 import { toast } from "react-toastify"
 import { PuffLoader } from "react-spinners"
@@ -21,19 +20,14 @@ import Link from "next/link"
      const [deleteId, setDeleteId] = useState('');
      const [allEmployees, setAllEmployees] = useState(null);
 
-    const router = useRouter();
-
-    // console.log(usersData);
     const fetchUsers = async() =>{
-        
-      // const data =  await getAllUsers();
-      const {data} =  await axios.get('/api/allusers',{
+      const {data} =  await axios.get('/api/register', {
         // query URL without using browser cache
         headers: {
-          'Cache-Control': 'no-cache',
-          cache:'no-cache',
-          'Pragma': 'no-cache',
-          'Expires': '0',
+          "Cache-Control": "no-cache",
+          cache: "no-cache",
+          Pragma: "no-cache",
+          Expires: "0",
         },
       });
       console.log(data);       
@@ -47,36 +41,30 @@ import Link from "next/link"
         toast.error('Please check your internet connection!!!', {
           position: toast.POSITION.TOP_RIGHT, 
         });
-        return router.push('/')
       }
           
           
     }
 
 
-    const handleDeleteUser = async(id)=>{
-      const data = await DeleteUserStatus(id);
-      // console.log(data);
-    if(data.success){
-      setDeleteId('');
-      fetchUsers();
-    }else{
-      toast.error(data.message, {
-        position: toast.POSITION.TOP_RIGHT, 
-      });
+    const handleDeleteUser = async()=>{
+      const data = await DeleteUserStatus(deleteId);
+      if(data.success){
+        setDeleteId('');
+        fetchUsers();
+      }else{
+        toast.error(data.message, {
+          position: toast.POSITION.TOP_RIGHT, 
+        });
     }
     }
 
     if(comfirmData){
-      handleDeleteUser(deleteId);
+      handleDeleteUser();
       setComfirmData(false);
     }
-    const handleDelete = async(id) =>{
-      setComfirmState(true);   
-      setDeleteId(id);   
-    }
+
     const handleUpdate = async(id) =>{
-      // console.log('clicked update',id);
       const data = await UpdateUserStatus(id);
       if(data.success){
         fetchUsers();
@@ -137,7 +125,7 @@ import Link from "next/link"
                     {
                       allEmployees.map((item,index)=>(
                           item?.email !== user?.email && !item?.hidden ?(<>
-                            <UserTableBody index={index+1} key={index} img={item?.photoURL} name={item?.name} village={item?.village} email={item?.email} status={item?.activated} createdAt={item?.createdAt.split('T')[0].split('-')} handleDelete={()=>handleDelete(item?._id)}  handleUpdate={()=>handleUpdate(item?._id) } />
+                            <UserTableBody index={index+1} key={index} img={item?.photoURL} name={item?.name} village={item?.village} email={item?.email} status={item?.activated} createdAt={item?.createdAt.split('T')[0].split('-')} handleDelete={()=>{  setDeleteId(item?._id); setComfirmState(true);}}  handleUpdate={()=>handleUpdate(item?._id) } />
                             </> ):null
 
                       ))

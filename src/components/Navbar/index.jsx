@@ -125,7 +125,7 @@ export default function index({ children }) {
                       <button
                         type="button"
                         className={ `relative ${!isAuthUser?'hidden':null} rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800`}
-                        onClick={()=>router.push(`${user?.role === 'admin'?'/view-messages':'/notifications'}`)}
+                        onClick={()=>router.push('/notifications')}
                       >
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">View notifications</span>
@@ -300,7 +300,7 @@ export default function index({ children }) {
                     <Disclosure.Button
                       type="button"
                       className="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                      onClick={()=>router.push(`${user?.role === 'admin'?'/view-messages':'/notifications'}`)}
+                      onClick={()=>router.push('/notifications')}
                     >
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">View notifications</span>
