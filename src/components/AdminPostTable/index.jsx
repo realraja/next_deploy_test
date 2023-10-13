@@ -52,7 +52,7 @@ export const EmployeesPostData = () => {
   const fetchUsers = async() =>{
         
     // const data =  await getAllUsers();
-    const {data} =  await axios.get('/api/allusers',{
+    const {data} =  await axios.get('/api/register',{
       // query URL without using browser cache
       headers: {
         'Cache-Control': 'no-cache',
