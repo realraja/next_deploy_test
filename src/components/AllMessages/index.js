@@ -107,7 +107,7 @@ const AdminMessage = () => {
     <div>
         {
                 MessageData.map((item)=>(
-                    item.user !== "651ee81097b46398c561567b"? (
+                    item.role !== "admin"? (
                         unreaderMessage?(
                             !item.ischeck?(
                                 <AdminMessages user={item} key={item._id} handleClickOnCheck={()=>handleClickOnCheck(item?._id)} />
@@ -175,7 +175,7 @@ const EmployeeMessage = () => {
     <div>
         {
                 MessageData.map((item)=>(
-                    item.user === "651ee81097b46398c561567b"?(
+                    item?.role === "admin"?(
                         <AdminMessages user={item} hidden={true} key={item._id} />
                     ):null
                 

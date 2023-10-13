@@ -11,7 +11,7 @@ import ComfirmButton from '@/components/ComfirmButton'
 import axios from "axios"
 import Link from "next/link"
   
-  export default function WorkerLinstComponent() {
+  export default function Page() {
     const {user} = useContext(GlobalContext);
     
     const [loading,setLoading] = useState(true);
@@ -124,7 +124,7 @@ import Link from "next/link"
 
                     {
                       allEmployees.map((item,index)=>(
-                          item?.email !== user?.email && !item?.hidden ?(<>
+                         item?.hidden ?(<>
                             <UserTableBody index={index+1} key={index} id={item?._id} img={item?.photoURL} name={item?.name} village={item?.village} email={item?.email} status={item?.activated} createdAt={item?.createdAt.split('T')[0].split('-')} handleDelete={()=>{  setDeleteId(item?._id); setComfirmState(true);}}  handleUpdate={()=>handleUpdate(item?._id) } />
                             </> ):null
 

@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const MessageSchema = new mongoose.Schema(
   {
     user: {type: String,required: true},
+    role: {type: String,required: true},
     email: { type: String, required: true },
     img: { type: String, required: true },
     name: { type: String, required: true },

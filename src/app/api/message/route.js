@@ -37,6 +37,7 @@ export const POST = async(req)=>{
 
         const newComment = await Message.create({
             name,
+            role:isUserExist?.role,
             email,
             user:isUserExist?._id,
             message,
