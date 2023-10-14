@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckBadgeIcon, XCircleIcon } from "@heroicons/react/24/outline";
+import { ArrowRightIcon, CheckBadgeIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "@/context";
 import { toast } from "react-toastify";
@@ -48,6 +48,27 @@ export const EmployeesformData = () => {
       });
     }
   };
+
+  const handalVarify =async ()=>{
+    setComponentLevelLoader(true);
+    const{data} = await axios.post('/api/sendmail', {
+      email: user?.email,
+    })
+    console.log(data)
+    if (data?.success) {
+      toast.success(data?.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setComponentLevelLoader(false);
+      router.push('/verify');
+    } else {
+      // console.log(data)
+      setcomponentLevelLoader(false);
+      toast.error(data?.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  }
 
   const formData = {
     email: user?.email,
@@ -201,7 +222,25 @@ export const EmployeesformData = () => {
         <p className="text-base font-semibold text-rose-600">404</p>
         <h1 className="mt-4 text-3xl font-bold tracking-tight text-rose-100 sm:text-5xl">You are not verified</h1>
         <p className="mt-6 text-base leading-7 text-rose-400">Please contact to admin to verify your account!!</p>
-        
+        <div className="mt-10 flex items-center justify-center gap-x-6">
+              <button
+                onClick={handalVarify}
+                className="flex space-x-2 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                {componentLevelLoader && componentLevelLoader.loading ? (
+                <ComponentLevelLoader
+                  text={"Sending Otp"}
+                  color={"#ffffff"}
+                  loading={componentLevelLoader && componentLevelLoader.loading}
+                />
+              ) : (
+                <>
+                  Verify Now <ArrowRightIcon className="w-5" />
+                </>
+              )}
+                
+              </button>
+            </div>
       </div>
     </main>
       }
