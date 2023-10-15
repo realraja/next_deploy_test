@@ -29,14 +29,12 @@ import Link from "next/link"
           Pragma: "no-cache",
           Expires: "0",
         },
-      });
-      console.log(data);       
+      });    
 
       if (data?.success) {
         setLoading(false);
         setAllEmployees(data?.data);
       } else {
-        // console.log(data)
         setLoading(false);
         toast.error('Please check your internet connection!!!', {
           position: toast.POSITION.TOP_RIGHT, 

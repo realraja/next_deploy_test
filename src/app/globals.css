@@ -46,3 +46,10 @@ body::-webkit-scrollbar-thumb {
   0em 0em 2em 1em #e419d6d3,
   0 0em 4em 4em rgba(98, 2, 215, 0.854)
 }
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

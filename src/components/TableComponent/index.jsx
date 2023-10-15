@@ -22,10 +22,7 @@ export const EmployeesformData = () => {
   const [usersPost, setUsersPost] = useState([]);
 
   const router = useRouter();
-  // console.log(todayHours,todayMachines,todayMinuts)
   const fetchPosts = async () => {
-    // console.log(user?._id)
-    // const data =  await getAllUsers();
     const { data } = await axios.get(`/api/post`, {
       // query URL without using browser cache
       headers: {
@@ -35,13 +32,11 @@ export const EmployeesformData = () => {
         Expires: "0",
       },
     });
-    console.log(data);
 
     if (data?.success) {
       setUsersPost(data?.post);
       setLoading(false);
     } else {
-      // console.log(data)
       setLoading(false);
       toast.error("Please check your internet connection!!!", {
         position: toast.POSITION.TOP_RIGHT,
@@ -50,20 +45,18 @@ export const EmployeesformData = () => {
   };
 
   const handalVarify =async ()=>{
-    setComponentLevelLoader(true);
+    setComponentLevelLoader({ loading: true, id: "" });
     const{data} = await axios.post('/api/sendmail', {
       email: user?.email,
     })
-    console.log(data)
     if (data?.success) {
       toast.success(data?.message, {
         position: toast.POSITION.TOP_RIGHT,
       });
-      setComponentLevelLoader(false);
+      setComponentLevelLoader({ loading: false, id: "" });
       router.push('/verify');
     } else {
-      // console.log(data)
-      setcomponentLevelLoader(false);
+      setcomponentLevelLoader({ loading: false, id: "" });
       toast.error(data?.message, {
         position: toast.POSITION.TOP_RIGHT,
       });
@@ -77,7 +70,6 @@ export const EmployeesformData = () => {
     minutes: todayMinuts,
   };
 
-  // console.log(formData);
 
   const handlePostWork = async () => {
     if (!user?.email) {
@@ -92,7 +84,6 @@ export const EmployeesformData = () => {
 
     const res = await PostNewUsersWork(formData);
 
-    console.log(res);
 
     if (res.success) {
       toast.success(res.post, {

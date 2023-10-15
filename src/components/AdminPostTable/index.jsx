@@ -36,7 +36,6 @@ export const EmployeesPostData = () => {
         Expires: "0",
       },
     });
-    console.log(data);
 
     if (data?.success) {
       setUsersPost(data?.post);

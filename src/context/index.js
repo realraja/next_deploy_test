@@ -21,16 +21,8 @@ export default function GlobalState({ children }) {
         id: "",
     });
 
-    const router = useRouter();
-    const pathName = usePathname();
-
-    useEffect(()=>{
+    const fetchAuthUserData = () =>{
         let token = Cookies.get('token')
-        // console.log('token========>',token);
-        
-        // console.log('token========>',tokenData);
-
-
         if(token !== undefined){
             let tokenData = jwt.verify(token,'rajesh8875');
             setIsAuthUser(true);
@@ -50,15 +42,14 @@ export default function GlobalState({ children }) {
         }else{
             setIsAuthUser(false);
         }
+    }
 
-
-        // if (!isAuthUser && pathName !== "/comment") {
-        //     router.push("/login");
-        //   }
+    useEffect(()=>{        
+       fetchAuthUserData();
     },[Cookies,isAuthUser])
 
     return(
-        <GlobalContext.Provider value={{todayDate,isAuthUser,setIsAuthUser,user,setUser,componentLevelLoader, setComponentLevelLoader,pageLevelLoader, setPageLevelLoader}}>
+        <GlobalContext.Provider value={{fetchAuthUserData,todayDate,isAuthUser,setIsAuthUser,user,setUser,componentLevelLoader, setComponentLevelLoader,pageLevelLoader, setPageLevelLoader}}>
             {children}
         </GlobalContext.Provider>
     )

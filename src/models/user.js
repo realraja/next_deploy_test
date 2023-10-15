@@ -29,6 +29,9 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  otp: {
+    type: String,
+  },
   activated: {
     type: Boolean,
     required: true,
