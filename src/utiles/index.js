@@ -7,15 +7,15 @@
 //   ];
   export const navOptions = [
     { name: "home", href: "/", current: true },
-    { name: "Contact Us", href: "/message", current: false },
     { name: "Comment", href: "/comment", current: false },
+    { name: "Contact Us", href: "/message", current: false },
   ];
   
   export const adminNavOptions = [
     { name: "home", href: "/", current: true },
     { name: "Employees", href: "/workers", current: false },
-    { name: "Comment", href: "/comment", current: false },
     { name: "Send Notification", href: "/message", current: false },
+    { name: "Comment", href: "/comment", current: false },
   ];
 
   export const userNavigation = [

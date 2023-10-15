@@ -1,7 +1,7 @@
 "use client";
 import { GlobalContext } from "@/context";
 import { updateAMessage } from "@/services/message";
-import { EnvelopeIcon,EnvelopeOpenIcon } from "@heroicons/react/24/outline";
+import { ArrowRightIcon, EnvelopeIcon,EnvelopeOpenIcon } from "@heroicons/react/24/outline";
 import { CheckIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
 import Link from "next/link";
@@ -9,10 +9,32 @@ import { useRouter } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
 import { PuffLoader } from "react-spinners";
 import { toast } from "react-toastify";
+import ComponentLevelLoader from "../Loader/componentlevel";
 
 
 export const ExportMessage = () =>{
-    const {user} = useContext(GlobalContext);
+    const {user,setComponentLevelLoader,componentLevelLoader} = useContext(GlobalContext);
+
+    const router = useRouter();
+
+    const handalVarify =async ()=>{
+      setComponentLevelLoader({ loading: true, id: "" });
+      const{data} = await axios.post('/api/sendmail', {
+        email: user?.email,
+      })
+      if (data?.success) {
+        toast.success(data?.message, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        setComponentLevelLoader({ loading: false, id: "" });
+        router.push('/verify');
+      } else {
+        setComponentLevelLoader({ loading: false, id: "" });
+        toast.error(data?.message, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
+    }
 
     return(
 
@@ -21,7 +43,17 @@ export const ExportMessage = () =>{
             user?.role === 'admin'?(
                 <AdminMessage />
             ):(
+              !user?.hidden?
                 <EmployeeMessage />
+                :
+                <main className="grid min-h-full place-items-center bg-gray-900 px-6 py-24 sm:py-32 lg:px-8">
+      <div className="text-center">
+        <p className="text-base font-semibold text-rose-600">404</p>
+        <h1 className="mt-4 text-3xl font-bold tracking-tight text-rose-100 sm:text-5xl">Your Account is Blocked</h1>
+        <p className="mt-6 text-base leading-7 text-rose-400">Please contact to admin to Unblock your account!!</p>
+        
+      </div>
+    </main>
             )
         ):(
             <main className="grid min-h-full place-items-center bg-gray-900 px-6 py-24 sm:py-32 lg:px-8">
@@ -29,7 +61,25 @@ export const ExportMessage = () =>{
         <p className="text-base font-semibold text-rose-600">404</p>
         <h1 className="mt-4 text-3xl font-bold tracking-tight text-rose-100 sm:text-5xl">You are not verified</h1>
         <p className="mt-6 text-base leading-7 text-rose-400">Please contact to admin to verify your account!!</p>
-        
+        <div className="mt-10 flex items-center justify-center gap-x-6">
+              <button
+                onClick={handalVarify}
+                className="flex space-x-2 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                {componentLevelLoader && componentLevelLoader.loading ? (
+                <ComponentLevelLoader
+                  text={"Sending Otp"}
+                  color={"#ffffff"}
+                  loading={componentLevelLoader && componentLevelLoader.loading}
+                />
+              ) : (
+                <>
+                  Verify Now <ArrowRightIcon className="w-5" />
+                </>
+              )}
+                
+              </button>
+            </div>
       </div>
     </main>
         )

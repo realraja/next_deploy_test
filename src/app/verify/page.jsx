@@ -24,6 +24,10 @@ const page = () => {
       router.push('/')
     }
 
+    if(otp.length > 6){
+      setOtp(otp.slice(0,6))
+    }
+
 
     const handleVerifyOtp = async() =>{
       setComponentLevelLoader2({ loading: true, id: "" })
@@ -105,9 +109,9 @@ const page = () => {
         <div class="max-w-sm mx-auto md:max-w-lg">
             <div class="w-full">
                 <div class="bg-gray-700 h-80 py-3 rounded text-center">
-                      <h1 class="text-2xl font-bold">OTP Verification</h1>
+                      <h1 class="text-2xl font-bold text-green-500">OTP Verification</h1>
                       <div class="flex flex-col mt-4">
-                          <span>Enter the OTP you received at</span>
+                          <span >Enter the OTP you received at</span>
                           <span class="font-bold">{user?.email.slice(0,3)}*****{user?.email.slice(-12)}</span>
                       </div>
                       

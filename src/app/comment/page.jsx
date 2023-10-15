@@ -84,7 +84,8 @@ const page = () => {
 
   },[]);
 
-  return (loading ?<div className="h-[90vh] items-center text-center flex"><PuffLoader className="m-auto"  size={'240px'} color={"#9224f0"} /> </div> :<>
+  return (!user?.hidden?
+    (loading ?<div className="h-[90vh] items-center text-center flex"><PuffLoader className="m-auto"  size={'240px'} color={"#9224f0"} /> </div> :<>
   <div className="flex justify-center space-x-5">
 
   <section className= "bg-gray-900 w-[85%] md:w-[70%]">
@@ -132,7 +133,17 @@ const page = () => {
           ))
         }
     </div>
-    </>);
+    </>):(
+      <main className="grid min-h-full place-items-center bg-gray-900 px-6 py-24 sm:py-32 lg:px-8">
+      <div className="text-center">
+        <p className="text-base font-semibold text-rose-600">404</p>
+        <h1 className="mt-4 text-3xl font-bold tracking-tight text-rose-100 sm:text-5xl">Your Account is Blocked</h1>
+        <p className="mt-6 text-base leading-7 text-rose-400">Please contact to admin to Unblock your account!!</p>
+        
+      </div>
+    </main>
+    )
+  );
 };
 
 const AdminMessages = ({ user }) => (
