@@ -27,7 +27,7 @@ const page = () => {
     // const data =  await getAllUsers();
     const {data} =  await axios.get('/api/comment', { cache: false });
 
-    console.log(data);       
+    // console.log(data);       
 
     if (data?.success) {
       setMessageData(data.data);
@@ -57,7 +57,7 @@ const page = () => {
     
     const res = await addNewComment(comment,user?.email);
 
-    console.log(res);
+    // console.log(res);
 
     if (res.success) {
       
@@ -95,7 +95,7 @@ const page = () => {
                 <div className="space-y-8">
                 
                 <div className="sm:col-span-2">
-                    <label for="comment" className="block mb-2 text-sm font-medium  text-gray-400">Your comment</label>
+                    <label htmlFor="comment" className="block mb-2 text-sm font-medium  text-gray-400">Your comment</label>
                     <textarea id="comment" value={comment} onChange={(e)=>setComment(e.target.value)} rows="6" className="block p-2.5 w-full text-sm  rounded-lg shadow-sm border  focus:ring-primary-500 focus:border-primary-500 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Leave a comment..."></textarea>
                 </div>
                 <button type='submit'  onClick={handleOnClick} className="disabled:opacity-50 py-3 px-5 text-sm font-medium text-center bg-black text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 bg-primary-600 hover:bg-primary-700 focus:ring-primary-800" disabled={comment === '' || comment.trim() === ""}>

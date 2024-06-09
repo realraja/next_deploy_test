@@ -30,12 +30,12 @@ export default function GlobalState({ children }) {
             axios.get(`/api/allusers/${tokenData?._id}`)
             .then(function (response) {
                 // handle success
-                console.log(response);
+                // console.log(response);
                 setUser(response.data.user);
             })
             .catch(function (error) {
                 // handle error
-                console.log(error);
+                // console.log(error);
                 setIsAuthUser(false);
             })
             

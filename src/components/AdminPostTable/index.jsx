@@ -244,19 +244,19 @@ export const EmployeesPostData = () => {
         Post Your Today's Work Now!
       </h1>
 
-      <div class="mt-2 p-5  bg-gray-800 rounded-lg border-2 border-gray-200 ">
+      <div className="mt-2 p-5  bg-gray-800 rounded-lg border-2 border-gray-200 ">
         <p
           htmlFor="time"
           className="pt-0 pr-2 absolute pb-0 pl-2 -mt-8 mr-0 mb-0 -ml-3 font-medium text-gray-50 bg-gray-800 "
         >
           Select Machines:
         </p>
-        <div class="flex justify-between">
+        <div className="flex justify-between">
           <select
             value={todayMachines}
             onChange={(e) => setTodayMachines(e.target.value)}
             name="hours"
-            class="scrollEditclass px-5 bg-gray-800 text-3xl  appearance-none outline-none"
+            className="scrollEditclass px-5 bg-gray-800 text-3xl  appearance-none outline-none"
           >
             {optionMachine.map((item) => (
               <option className="" value={item.id} key={item.id}>
@@ -266,7 +266,7 @@ export const EmployeesPostData = () => {
           </select>
           <select
             name="ampm"
-            class="bg-gray-800 text-3xl appearance-none outline-none"
+            className="bg-gray-800 text-3xl appearance-none outline-none"
           >
             <option value="am">Machines</option>
           </select>

@@ -104,22 +104,22 @@ const page = () => {
    
 
   return (
-    <div class="h-screen py-20 px-3">
-    <div class="container mx-auto">
-        <div class="max-w-sm mx-auto md:max-w-lg">
-            <div class="w-full">
-                <div class="bg-gray-700 h-80 py-3 rounded text-center">
-                      <h1 class="text-2xl font-bold text-green-500">OTP Verification</h1>
-                      <div class="flex flex-col mt-4">
+    <div className="h-screen py-20 px-3">
+    <div className="container mx-auto">
+        <div className="max-w-sm mx-auto md:max-w-lg">
+            <div className="w-full">
+                <div className="bg-gray-700 h-80 py-3 rounded text-center">
+                      <h1 className="text-2xl font-bold text-green-500">OTP Verification</h1>
+                      <div className="flex flex-col mt-4">
                           <span >Enter the OTP you received at</span>
-                          <span class="font-bold">{user?.email.slice(0,3)}*****{user?.email.slice(-12)}</span>
+                          <span className="font-bold">{user?.email.slice(0,3)}*****{user?.email.slice(-12)}</span>
                       </div>
                       
-                      <div  class="flex flex-row justify-center text-center px-2 mt-5">
-                          <input class="tracking-wider m-2 text-xl border bg-gray-700 h-10 w-44 text-center form-control rounded" type="number" maxLength={'6'} value={otp} onChange={(e)=>{setOtp(e.target.value); }}  /> 
+                      <div  className="flex flex-row justify-center text-center px-2 mt-5">
+                          <input className="tracking-wider m-2 text-xl border bg-gray-700 h-10 w-44 text-center form-control rounded" type="number" maxLength={'6'} value={otp} onChange={(e)=>{setOtp(e.target.value); }}  /> 
                       </div>
                       
-                      <div class="flex justify-center text-center mt-5">
+                      <div className="flex justify-center text-center mt-5">
                       <button
                 onClick={handleVerifyOtp}
                 className=" disabled:opacity-50 flex space-x-2 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -138,8 +138,8 @@ const page = () => {
               </button>
                       </div>
 
-                      <div class="flex justify-center text-center mt-5">
-                          <button onClick={handalSendOtp} class="flex items-center text-rose-600 hover:text-rose-900 cursor-pointer"><span class="font-bold">
+                      <div className="flex justify-center text-center mt-5">
+                          <button onClick={handalSendOtp} className="flex items-center text-rose-600 hover:text-rose-900 cursor-pointer"><span className="font-bold">
                           {componentLevelLoader && componentLevelLoader.loading ? (
                 <ComponentLevelLoader
                   text={"Resending"}

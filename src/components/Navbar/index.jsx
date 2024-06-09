@@ -37,36 +37,25 @@ export default function index({ children }) {
 
 
   const handleLogout = () => {
-    console.log("rajesh@gmail.com");
+    // console.log("rajesh@gmail.com");
     setComfirmState(true);
   };
-  if (comfirmData) {
-    setIsAuthUser(false);
-    setUser(null);
-    Cookies.remove("token");
-    localStorage.clear();
-    setComfirmData(false);
-    router.push("/");
-  }
 
-  let isAdminView;
-  console.log(user?.role)
-  if (user?.role === "admin") {
-    isAdminView = true;
-  } else {
-    isAdminView = false;
-  }
+  useEffect(() => {
+    if (comfirmData) {
+      setIsAuthUser(false);
+      setUser(null);
+      Cookies.remove("token");
+      localStorage.clear();
+      setComfirmData(false);
+      router.push("/");
+    }
+  }, [comfirmData]);
+  
 
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-      */}
+     
       <div className="min-h-full ">
         <Disclosure as="nav" className="bg-gray-800 min-w-full fixed top-0 z-10">
           {({ open }) => (
@@ -89,7 +78,7 @@ export default function index({ children }) {
                       <div className="ml-10 flex items-baseline space-x-4">
                         {user?.role === "admin"
                           ? adminNavOptions.map((item) => (
-                              <Link
+                              <p
                                 key={item.name}
                                 href={item.href}
                                 className={classNames(
@@ -103,24 +92,24 @@ export default function index({ children }) {
                                 }
                               >
                                 {item.name}
-                              </Link>
+                              </p>
                             ))
                           : navOptions.map((item) => (
-                              <Link
+                              <p
                                 key={item.name}
-                                href={item.href}
+                                onClick={()=> router.push(item.href)}
                                 className={classNames(
                                   pathName === item.href
                                     ? "bg-gray-900 text-purple-300"
                                     : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                                  "rounded-md px-3 py-2 text-sm font-medium"
+                                  "rounded-md px-3 py-2 text-sm font-medium cursor-pointer"
                                 )}
                                 aria-current={
                                   pathName === item.href ? "page" : undefined
                                 }
                               >
                                 {item.name}
-                              </Link>
+                              </p>
                             ))}
                       </div>
                     </div>
@@ -221,21 +210,21 @@ export default function index({ children }) {
                     </div>
                   ) : pathName === "/login" ? (
                     <div className=" lg:flex lg:flex-1 lg:justify-end ">
-                      <Link
-                        href="/register"
+                      <p
+                        onClick={()=> router.push('register')}
                         className="text-sm font-semibold leading-6 text-violet-500"
                       >
                         Sign Up <span aria-hidden="true">&rarr;</span>
-                      </Link>
+                      </p>
                     </div>
                   ) : (
                     <div className=" lg:flex lg:flex-1 lg:justify-end ">
-                      <Link
-                        href="/login"
+                      <p
+                        onClick={()=> router.push('login')}
                         className="text-sm font-semibold leading-6 text-violet-500"
                       >
                         Sign In <span aria-hidden="true">&rarr;</span>
-                      </Link>
+                      </p>
                     </div>
                   )}
                 </div>
@@ -245,7 +234,7 @@ export default function index({ children }) {
                 <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
                   {user?.role === "admin"
                     ? adminNavOptions.map((item) => (
-                        <Link href={item.href}>
+                        <p onClick={()=> router.push(item.href)}>
                           <Disclosure.Button
                             key={item.name}
                             className={classNames(
@@ -260,14 +249,13 @@ export default function index({ children }) {
                           >
                             {item.name}
                           </Disclosure.Button>
-                        </Link>
+                        </p>
                       ))
                     : navOptions.map((item) => (
-                        <Link key={item.name} href={item.href}>
+                        <p key={item.name} onClick={()=> router.push(item.href)}>
                           <Disclosure.Button
                             
-                            as="Link"
-                            href={item.href}
+                           
                             className={classNames(
                               pathName === item.href
                                 ? "bg-gray-900 text-purple-500 w-full"
@@ -280,7 +268,7 @@ export default function index({ children }) {
                           >
                             {item.name}
                           </Disclosure.Button>
-                        </Link>
+                        </p>
                       ))}
                   {/* {navOptions} */}
                 </div>
