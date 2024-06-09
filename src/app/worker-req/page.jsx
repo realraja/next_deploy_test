@@ -124,9 +124,8 @@ import Link from "next/link"
 
                     {
                       allEmployees.map((item,index)=>(
-                         item?.hidden ?(<>
-                            <UserTableBody index={index+1} key={index} id={item?._id} img={item?.photoURL} name={item?.name} village={item?.village} email={item?.email} status={item?.activated} createdAt={item?.createdAt.split('T')[0].split('-')} handleDelete={()=>{  setDeleteId(item?._id); setComfirmState(true);}}  handleUpdate={()=>handleUpdate(item?._id) } />
-                            </> ):null
+                         item?.hidden ?(<UserTableBody index={index+1} key={index} id={item?._id} img={item?.photoURL} name={item?.name} village={item?.village} email={item?.email} status={item?.activated} createdAt={item?.createdAt.split('T')[0].split('-')} handleDelete={()=>{  setDeleteId(item?._id); setComfirmState(true);}}  handleUpdate={()=>handleUpdate(item?._id) } />
+                            ):null
 
                       ))
                     }

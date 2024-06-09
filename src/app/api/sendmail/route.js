@@ -42,7 +42,7 @@ export async function POST(request) {
             host: 'smtp.gmail.com',
             port: 587,
             secure:false,
-            auth: {
+            auth: {   
                 user: 'realllraja@gmail.com',
                 pass: 'itlglltszclyhdie'
             },

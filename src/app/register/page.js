@@ -31,25 +31,33 @@ const createUniqueFileName = (getFile) => {
 };
 
 async function helperForUPloadingImageToFirebase(file) {
-  const getFileName = createUniqueFileName(file);
-  const storageReference = ref(storage, `ecommerce/${getFileName}`);
-  const uploadImage = uploadBytesResumable(storageReference, file);
-
-  return new Promise((resolve, reject) => {
-    uploadImage.on(
-      "state_changed",
-      (snapshot) => {},
-      (error) => {
-        console.log(error);
-        reject(error);
-      },
-      () => {
-        getDownloadURL(uploadImage.snapshot.ref)
-          .then((downloadUrl) => resolve(downloadUrl))
-          .catch((error) => reject(error));
-      }
-    );
+ try {
+   const getFileName = createUniqueFileName(file);
+   console.log(getFileName)
+   const storageReference = ref(storage, `ecommerce/${getFileName}`);
+   const uploadImage = uploadBytesResumable(storageReference, file);
+ 
+   return new Promise((resolve, reject) => {
+     uploadImage.on(
+       "state_changed",
+       (snapshot) => {},
+       (error) => {
+         console.log(error);
+         reject(error);
+       },
+       () => {
+         getDownloadURL(uploadImage.snapshot.ref)
+           .then((downloadUrl) => resolve(downloadUrl))
+           .catch((error) => reject(error));
+       }
+     );
+   });
+ } catch (error) {
+  console.log(error)
+  toast.error(error, {
+    position: toast.POSITION.TOP_RIGHT,
   });
+ }
 }
 
 const initialFormData = {
@@ -69,14 +77,21 @@ export default function Register() {
   const router = useRouter()
 
   const handleImage = async(event)=> {
-    const extractImageUrl = await helperForUPloadingImageToFirebase(
-      event.target.files[0]
-    );
-
-    if (extractImageUrl !== "") {
-      setFormData({
-        ...formData,
-        photoURL: extractImageUrl,
+    try {
+      const extractImageUrl = await helperForUPloadingImageToFirebase(
+        event.target.files[0]
+      );
+  
+      if (extractImageUrl !== "") {
+        setFormData({
+          ...formData,
+          photoURL: extractImageUrl,
+        });
+      }
+    } catch (error) {
+      console.log(error)
+      toast.error('Error in image upload', {
+        position: toast.POSITION.TOP_RIGHT,
       });
     }
     
@@ -165,9 +180,10 @@ export default function Register() {
                     onChange={handleImage}
                     />
                   </div>
-                  {registrationFormControls.map((controlItem) =>
+                  {registrationFormControls.map((controlItem,v) =>
                     controlItem.componentType === "input" ? (
                       <InputComponent
+                      key={v}
                         type={controlItem.type}
                         placeholder={controlItem.placeholder}
                         label={controlItem.label}
@@ -181,6 +197,7 @@ export default function Register() {
                       />
                     ) : controlItem.componentType === "select" ? (
                       <SelectComponent
+                      key={v}
                         options={controlItem.options}
                         label={controlItem.label}
                         onChange={(event) => {

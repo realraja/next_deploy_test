@@ -148,7 +148,7 @@ const page = () => {
 
 const AdminMessages = ({ user }) => (
   <div className="flex flex-col m-8">
-    <div className="md:min-h-[70px] hidden md:flex  m-1 w-full  border-2 border-violet-500 rounded-md">
+    <div className="md:min-h-[70px] max-sm:hidden sm:hidden md:flex  m-1 w-full  border-2 border-violet-500 rounded-md">
       <div className="flex-initial flex justify-center items-center  flex-col md:min-w-[130px] md:max-w-[130px] text-center m-auto md:p-2 md:mx-2   border-r-2 border-gray-400">
       <Link href={`/profile/${user?.user}`}>
         <img

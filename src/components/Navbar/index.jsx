@@ -24,6 +24,10 @@ export default function index({ children }) {
   const { user, isAuthUser, setUser, setIsAuthUser } =
     useContext(GlobalContext);
 
+    // console.log(user,isAuthUser, setUser, setIsAuthUser)
+    // console.log(isAuthUser)
+  
+
   const [comfirmData, setComfirmData] = useState(false);
   const [comfirmState, setComfirmState] = useState(false);
 
@@ -46,6 +50,7 @@ export default function index({ children }) {
   }
 
   let isAdminView;
+  console.log(user?.role)
   if (user?.role === "admin") {
     isAdminView = true;
   } else {
@@ -80,7 +85,7 @@ export default function index({ children }) {
                       </span>
                     </div>
 
-                    <div className="hidden md:block">
+                    <div className="max-sm:hidden sm:hidden  md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
                         {user?.role === "admin"
                           ? adminNavOptions.map((item) => (
@@ -120,7 +125,7 @@ export default function index({ children }) {
                       </div>
                     </div>
                   </div>
-                  <div className="hidden md:block">
+                  <div className="max-sm:hidden sm:hidden  md:block">
                     <div className="ml-4 flex items-center md:ml-6">
                       <button
                         type="button"
@@ -258,9 +263,9 @@ export default function index({ children }) {
                         </Link>
                       ))
                     : navOptions.map((item) => (
-                        <Link href={item.href}>
+                        <Link key={item.name} href={item.href}>
                           <Disclosure.Button
-                            key={item.name}
+                            
                             as="Link"
                             href={item.href}
                             className={classNames(
